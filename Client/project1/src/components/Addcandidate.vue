@@ -5,7 +5,7 @@
                 <div class="card  mx-auto shadow-lg">
                     <h1 class="card-header ">
                         Candidate Details
-                        <!-- {{user.user_id}} -->
+                        <!-- {{loggedInUser}} -->
                     </h1>
                     <div class="card-body">
 
@@ -30,7 +30,7 @@
 
 
                             <div class="row mb-3">
-                                <label  for="cid" class="col-sm-2 col-form-label">candidate_id</label>
+                                <label  for="cid" class="col-sm-2 col-form-label">Candidate Id</label>
                                 <div class="col-sm-10">
                                     <input v-model="candidate.candidate_id" type="text" class="form-control" id="cid">
                                 </div>
@@ -38,9 +38,9 @@
 
 
                             <div class="row mb-3">
-                                <label  for="cb" class="col-sm-2 col-form-label">createdby_id</label>
+                                <label  for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
                                 <div class="col-sm-10">
-                                    <input v-model="user.user_id" type="text" class="form-control" id="cb">
+                                    <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb">
                                 </div>
                             </div>
 
@@ -54,14 +54,13 @@
 
 
                             <div class="row mb-3">
-                                <label  for="rl" class="col-sm-2 col-form-label">resume_link</label>
+                                <label  for="rl" class="col-sm-2 col-form-label">Resume Link</label>
                                 <div class="col-sm-10">
                                     <input v-model="candidate.resume_link" type="text" class="form-control" id="rl">
                                 </div>
                             </div>
                             <!-- Submit button -->
-                            <button type="Submit" class="btn btn-primary btn-block mb-4" value="Register">Sign
-                                in</button>
+                            <button type="Submit" class="btn btn-primary btn-block mb-4" value="Register">Add</button>
 
 
                         </form>
@@ -75,13 +74,13 @@
 </template>
     
 <script>
-    const jwt = require("jsonwebtoken");
+import {mapState} from "vuex"
 export default {
-    
-    name: "Login",
+    computed:{
+      ...mapState(["loggedInUser"])
+    },
     data: function () {
         return {
-            user:{},
             candidate: {
                 name: "",
                 email: "",
@@ -93,18 +92,11 @@ export default {
         };
     },
     methods: {
-        async getUserDetails() {
-      let token = localStorage.getItem("jwt");
-      let decoded = jwt.verify(token, "secret");
-      this.user = decoded;
-    },
         async addDetails() {
-            //  console.log(axiosInstance)
             try {
                 let response = await this.$http.post("candidate/register", this.candidate);
                 if (response != null) {
                     this.candidate={}
-                    this.$router.push("/");
 
                 }
             } catch (err) {
@@ -112,10 +104,7 @@ export default {
                 console.log(err.response);
             }
         }
-    },
-    created() {
-    this.getUserDetails();
-  }
+    }
 
 };
 </script>

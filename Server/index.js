@@ -35,8 +35,11 @@ app.get("/", (req, res) => {
 
 const userRoutes = require("./api/route/user"); //bring in our user routes
 app.use("/user", userRoutes);
-const candidateRoutes = require("./api/route/candidate"); //bring in our user routes
+const candidateRoutes = require("./api/route/candidate"); //bring in our candidates routes
 app.use("/candidate", candidateRoutes);
+const roleRoutes = require("./api/route/job"); //bring in our job routes
+app.use("/job", roleRoutes);
+
 app.listen(PORT, () => {
   console.log(`project1 is running on ${PORT}`);
 });

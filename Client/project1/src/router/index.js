@@ -31,12 +31,12 @@ const routes= [
     {
       path: '/addj',
     name: ' Add Job ',
-    component:()=>import("../components/Info.vue") ,
+    component:()=>import("../components/Addjob") ,
     },
     {
       path: '/viewj',
     name: ' Available Job ',
-    component:()=>import("../views/Home.vue") ,
+    component:()=>import("../components/Alljob.vue") ,
     },
     {
       path: '/addu',
