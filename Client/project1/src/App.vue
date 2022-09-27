@@ -27,7 +27,7 @@
       }
     },
     created() {
-      // this.getUserDetails();
+      this.getUserDetails();
     }
   };
   </script>
