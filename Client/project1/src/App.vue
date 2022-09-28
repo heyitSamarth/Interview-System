@@ -20,13 +20,17 @@
       getUserDetails() {
         
         let token = localStorage.getItem("jwt");
+        if(token)
+        {
         let decoded = jwt.verify(token, "secret");
         this.user = decoded;
         this.setLoggedInUser(decoded);
+        }
       
       }
     },
     created() {
+      
       this.getUserDetails();
     }
   };

@@ -46,7 +46,8 @@
 </template>
 
 <script>
-
+import {mapMutations} from "vuex";
+const jwt = require("jsonwebtoken");
 export default {
     name:"Login",
     data :function(){
@@ -59,6 +60,7 @@ export default {
     };
 },
 methods:{
+  ...mapMutations(["setLoggedInUser"]),
     // incr : function() {
     //     this.count = this.count + 1;
     // }
@@ -71,6 +73,9 @@ methods:{
         
         if (token) {
           console.log(token);
+          let decoded = jwt.verify(token, "secret");
+        this.user = decoded;
+        this.setLoggedInUser(decoded);
           this.$router.push("/");
 
         }

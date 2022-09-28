@@ -97,6 +97,7 @@ export default {
                 let response = await this.$http.post("candidate/register", this.candidate);
                 if (response != null) {
                     this.candidate={}
+                    
 
                 }
             } catch (err) {

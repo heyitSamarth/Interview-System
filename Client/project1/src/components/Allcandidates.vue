@@ -31,9 +31,10 @@ export default {
     methods: {
         async deleteCandidate(candidate) {
             try {
-               let  responce = await this.$http.delete("candidate/deletecandidate/:id");
+               let  responce = await this.$http.delete(`candidate/deletecandidate/${candidate._id}`);
                 console.log(responce)
                 console.log(candidate)
+                this.getDetails()
             } catch (err) {
 
                 console.log(err.response);

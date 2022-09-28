@@ -37,9 +37,12 @@ exports.getAllCandidates = async (req, res) => {
 exports.deleteCandidate =async (req, res) => {
   try {
 
-      let candidate = await Note.findById(req.params.id)
-      if(!candidate){res.status(404).send("NOT FOUND")}
-      candidate=await Note.findByIdAndDelete(req.params.id)
+      let candidate = await Candidate.findById(req.params.id)
+      if(!candidate){res.status(404).send("NOT FOUND")
+    return
+    }
+      
+      candidate=await Candidate.findByIdAndDelete(req.params.id)
       res.json({"Sucesss":" Note has been deleted"});
 
   } catch (error) {
