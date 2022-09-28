@@ -12,13 +12,13 @@
 
                         <form class=" mt-3" @submit.prevent="addDetails">
 
-                            <!-- Job Id input -->
+                            <!-- Job Id input
                             <div class="row mb-3">
                                 <label for="jobid" class="col-sm-2 col-form-label">Job Id</label>
                                 <div class="col-sm-10">
                                     <input v-model="job.job_id" type="text" class="form-control" id="Jobid">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- title input -->
                             <div class="row mb-3">

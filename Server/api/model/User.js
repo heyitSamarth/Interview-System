@@ -14,11 +14,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, "Please Include your password"]
   },
-  user_id:
-  {
-    type: String,
-    required: [true, "Please Include your user id"]
-  },
   role_id:
   {
     type: String,
@@ -45,8 +40,7 @@ userSchema.pre("save", async function(next) {
   //this method generates an auth token for the user
   userSchema.methods.generateAuthToken = async function() {
     const user = this;
-    const token = jwt.sign({ _id: user._id, name: user.name, email: user.email,role_id:user.role_id,user_id:user.user_id },
-    "secret");
+    const token = jwt.sign({ _id: user._id, name: user.name, email: user.email,role_id:user.role_id},"secret");
     user.tokens = user.tokens.concat({ token });
     await user.save();
     return token;

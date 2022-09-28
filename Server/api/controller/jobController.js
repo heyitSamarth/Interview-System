@@ -4,7 +4,6 @@ exports.registerNewJob = async (req, res) => {
     try {
         
       const job = new Job({
-        job_id:req.body.job_id,
         title:req.body.title,
         openings: req.body.openings,
         discription: req.body.discription,
@@ -35,11 +34,14 @@ exports.getJobDetails = async (req, res) => {
 
 exports.deleteJob =async (req, res) => {
     try {
-  
-        let job = await Note.findById(req.params.id)
-        if(!job){res.status(404).send("NOT FOUND")}
-        job=await Note.findByIdAndDelete(req.params.id)
-        res.json({"Sucesss":" Note has been deleted"});
+      console.log("delete");
+        let job = await Job.findById(req.params.id)
+        
+        if(!job){res.status(403).send("NOT FOUND")
+      return
+      }
+        job=await Job.findByIdAndDelete(req.params.id)
+        res.json({"Sucesss":" Job has been deleted"});
   
     } catch (error) {
         console.error(error.message);

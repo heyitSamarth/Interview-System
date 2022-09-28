@@ -35,7 +35,7 @@ const routes= [
     },
     {
       path: '/viewj',
-    name: ' Available Job ',
+    name: ' Job List ',
     component:()=>import("../components/Alljob.vue") ,
     },
     {

@@ -5,7 +5,7 @@
             <div class="card text-bg-light mb-3  " >
                     <div class="card-body"  >
                         <h5 class="card-header">{{candidate.name}}</h5>
-                        <p class="card-text"> Candidate id : {{candidate.candidate_id}}</p>
+                        <!-- <p class="card-text"> Candidate id : {{candidate.candidate_id}}</p> -->
                         <p class="card-text"> Created By id : {{candidate.createdby_id}}</p>
                         <p class="card-text"> Candidate email : {{candidate.email}}</p>
                         <p class="card-text"> Candidate experience : {{candidate.experience}}</p>

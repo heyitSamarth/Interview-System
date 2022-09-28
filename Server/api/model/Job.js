@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const jobSchema = mongoose.Schema({
-    job_id:{
-      type: String,
-      required: [true, "Please Include your job_id"]
-    },
   title:
   {
     type: String,

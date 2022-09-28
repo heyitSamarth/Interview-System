@@ -5,6 +5,6 @@ const jobController = require("../controller/jobController");
 
 router.post("/register", jobController.registerNewJob);
 router.get("/get", jobController.getJobDetails);
-router.delete("/deletejob", jobController.deleteJob);
+router.delete("/deletejob/:id", jobController.deleteJob);
 
 module.exports = router;

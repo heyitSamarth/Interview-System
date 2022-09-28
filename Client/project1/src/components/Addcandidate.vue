@@ -29,18 +29,18 @@
                             </div>
 
 
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <label  for="cid" class="col-sm-2 col-form-label">Candidate Id</label>
                                 <div class="col-sm-10">
                                     <input v-model="candidate.candidate_id" type="text" class="form-control" id="cid">
                                 </div>
-                            </div>
+                            </div> -->
 
 
                             <div class="row mb-3">
                                 <label  for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
                                 <div class="col-sm-10">
-                                    <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb">
+                                    <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb" >
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@ export default {
                 name: "",
                 email: "",
                 candidate_id: "",
-                createdby_id: "",
+                createdby_id:"",
                 experience: "",
                 resume_link:"",
             }

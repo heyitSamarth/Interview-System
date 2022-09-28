@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const candidateSchema = mongoose.Schema({
-  candidate_id:
-  {
-    type: String,
-    required: [true, "Please Include your candidate id"]
-  },
   name: {
     type: String,
     required: [true, "Please Include your name"]

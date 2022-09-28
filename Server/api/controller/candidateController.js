@@ -9,7 +9,6 @@ exports.registerNewCandidate = async (req, res) => {
       const candidate = new Candidate({
         name: req.body.name,
         email: req.body.email,
-        candidate_id: req.body.candidate_id,
         createdby_id: req.body.createdby_id,
         experience: req.body.experience,
         resume_link: req.body.resume_link,
@@ -43,7 +42,7 @@ exports.deleteCandidate =async (req, res) => {
     }
       
       candidate=await Candidate.findByIdAndDelete(req.params.id)
-      res.json({"Sucesss":" Note has been deleted"});
+      res.json({"Sucesss":" candidate has been deleted"});
 
   } catch (error) {
       console.error(error.message);

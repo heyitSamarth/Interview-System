@@ -12,7 +12,6 @@ exports.registerNewUser = async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        user_id: req.body.user_id,
         role_id: req.body.role_id
       });
       let data = await user.save();

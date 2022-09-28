@@ -28,7 +28,7 @@
       <!-- Password input -->
       <div class="form-outline  mb-4">
         <label class="form-label " for="form2Example2">Password</label>
-        <input v-model="login.password" type="password" id="form2Example2" class="form-control" />
+        <input v-model="login.password" autocomplete="off" type="password" id="form2Example2" class="form-control" />
         
       </div>
       <!-- Submit button -->
@@ -72,7 +72,7 @@ methods:{
         localStorage.setItem("jwt", token);
         
         if (token) {
-          console.log(token);
+          // console.log(token);
           let decoded = jwt.verify(token, "secret");
         this.user = decoded;
         this.setLoggedInUser(decoded);
