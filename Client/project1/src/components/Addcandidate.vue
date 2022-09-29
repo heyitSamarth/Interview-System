@@ -5,7 +5,7 @@
                 <div class="card  mx-auto shadow-lg">
                     <h1 class="card-header ">
                         Candidate Details
-                        <!-- {{loggedInUser}} -->
+                        <!-- {{loggedInUser._id}} -->
                     </h1>
                     <div class="card-body">
 
