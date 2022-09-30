@@ -1,7 +1,7 @@
 <template lang="">
     <div class="container my-5" >
         <div class="row row-cols-1 row-cols-md-3 g-4" >
-            <div class="col"  v-for="candidate in this.candidates" :key="candidate._id">
+            <div class="col"  v-for = "candidate in this.candidates" :key="candidate._id">
             <div class="card text-bg-light mb-3  " >
                     <div class="card-body"  >
                         <h5 class="card-header">{{candidate.name}}</h5>
@@ -33,7 +33,6 @@ export default {
             try {
                let  responce = await this.$http.delete(`candidate/deletecandidate/${candidate._id}`);
                 console.log(responce)
-                console.log(candidate)
                 this.getDetails()
             } catch (err) {
 
@@ -63,5 +62,5 @@ export default {
 }
 </script>
 <style lang="">
-    
+
 </style>

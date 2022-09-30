@@ -45,9 +45,10 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="cb" class="col-sm-2 col-form-label">Createdby_id</label>
+                                <label  for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
                                 <div class="col-sm-10">
-                                    <input v-model="job.createdby_id" type="text" class="form-control" id="cb">
+                                    <label class="my-2">{{loggedInUser._id}}</label>
+                                    <!-- <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb" > -->
                                 </div>
                             </div>
 
@@ -74,19 +75,16 @@ export default {
     data: function () {
         return {
             job: {
-                job_id: "",
                 title: "",
                 openings: "",
                 discription: "",
-                createdby_id: ""
             }
         };
     },
     methods: {
         async addDetails() {
-            console.log("sam")
             try {
-                let response = await this.$http.post("job/register", this.job);
+                let response = await this.$http.post("job/register", this.job,{headers:{'auth-token':localStorage.getItem('jwt')}});
                 if (response != null) {
                     this.job = {}
                 }

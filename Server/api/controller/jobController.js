@@ -1,13 +1,14 @@
 const Job = require("../model/Job");
+var id =require("../authentication/auth")
 
 exports.registerNewJob = async (req, res) => {
     try {
-        
+      const createdbyid=id(req,res)
       const job = new Job({
         title:req.body.title,
         openings: req.body.openings,
         discription: req.body.discription,
-        createdby_id:req.body.createdby_id,
+        createdby_id:createdbyid,
    
       }
       );
@@ -15,6 +16,9 @@ exports.registerNewJob = async (req, res) => {
       let data = await job.save();
       res.status(201).json({ data });
     } catch (err) {
+      if(err.name=='JsonWebTokenError')
+      res.status(401).json(" NO token")
+      else
       res.status(400).json({ err: err });
     }
   };

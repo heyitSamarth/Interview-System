@@ -41,7 +41,7 @@ const routes= [
     {
       path: '/addu',
     name: ' Add User ',
-    component:()=>import("../components/Info.vue") ,
+    component:()=>import("../components/Adduser.vue") ,
     },
     {
           path: "/login",

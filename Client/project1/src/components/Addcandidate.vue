@@ -5,14 +5,14 @@
                 <div class="card  mx-auto shadow-lg">
                     <h1 class="card-header ">
                         Candidate Details
-                        <!-- {{loggedInUser._id}} -->
+                        {{loggedInUser._id}}
                     </h1>
                     <div class="card-body">
 
 
                         <form class=" mt-3" @submit.prevent="addDetails">
 
-                            <!-- Email input -->
+                            <!-- Name input -->
                             <div class="row mb-3">
                                 <label  for="inputname" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
 
-                            <!-- Password input -->
+                            <!-- Email input -->
                             <div class="row mb-3">
                                 <label  for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
@@ -36,15 +36,6 @@
                                 </div>
                             </div> -->
 
-
-                            <div class="row mb-3">
-                                <label  for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
-                                <div class="col-sm-10">
-                                    <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb" >
-                                </div>
-                            </div>
-
-
                             <div class="row mb-3">
                                 <label  for="experience" class="col-sm-2 col-form-label">Experience</label>
                                 <div class="col-sm-10">
@@ -57,6 +48,14 @@
                                 <label  for="rl" class="col-sm-2 col-form-label">Resume Link</label>
                                 <div class="col-sm-10">
                                     <input v-model="candidate.resume_link" type="text" class="form-control" id="rl">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label  for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
+                                <div class="col-sm-10">
+                                    <label class="my-2">{{loggedInUser._id}}</label>
+                                    <!-- <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb" > -->
                                 </div>
                             </div>
                             <!-- Submit button -->
@@ -84,17 +83,17 @@ export default {
             candidate: {
                 name: "",
                 email: "",
-                candidate_id: "",
-                createdby_id:"",
                 experience: "",
-                resume_link:"",
+                resume_link: "",
+                // abc:this.loggedInUser._id
             }
         };
     },
     methods: {
         async addDetails() {
             try {
-                let response = await this.$http.post("candidate/register", this.candidate);
+                let response = await this.$http.post("candidate/register", {...this.candidate,//abc:this.loggedInUser._id
+                },{headers:{'auth-token':localStorage.getItem('jwt')}});
                 if (response != null) {
                     this.candidate={}
                     
