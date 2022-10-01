@@ -5,7 +5,7 @@
                 <div class="card  mx-auto shadow-lg">
                     <h1 class="card-header ">
                         Add User
-                        <!-- {{loggedInUser._id}} -->
+                        <!-- {{this.user}} -->
                     </h1>
                     <div class="card-body">
 

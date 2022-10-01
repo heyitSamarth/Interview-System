@@ -39,6 +39,8 @@ const candidateRoutes = require("./api/route/candidate"); //bring in our candida
 app.use("/candidate", candidateRoutes);
 const roleRoutes = require("./api/route/job"); //bring in our job routes
 app.use("/job", roleRoutes);
+const applicationRoutes = require("./api/route/application"); //bring in our application routes
+app.use("/application", applicationRoutes);
 
 app.listen(PORT, () => {
   console.log(`project1 is running on ${PORT}`);

@@ -44,6 +44,16 @@ const routes= [
     component:()=>import("../components/Adduser.vue") ,
     },
     {
+      path: '/adda',
+    name: ' Add Application ',
+    component:()=>import("../components/Addapplication.vue") ,
+    },
+    {
+      path: '/viewa',
+    name: ' All Applications ',
+    component:()=>import("../components/Allapplication.vue") ,
+    },
+    {
           path: "/login",
           name: "Login",
           component: Login

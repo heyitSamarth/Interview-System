@@ -5,7 +5,7 @@
                 <div class="card  mx-auto shadow-lg">
                     <h1 class="card-header ">
                         Candidate Details
-                        {{loggedInUser._id}}
+                        <!-- {{loggedInUser._id}} -->
                     </h1>
                     <div class="card-body">
 
@@ -39,7 +39,7 @@
                             <div class="row mb-3">
                                 <label  for="experience" class="col-sm-2 col-form-label">Experience</label>
                                 <div class="col-sm-10">
-                                    <input v-model="candidate.experience" type="text" class="form-control" id="experience">
+                                    <input v-model="candidate.experience" type="number" class="form-control" id="experience">
                                 </div>
                             </div>
 

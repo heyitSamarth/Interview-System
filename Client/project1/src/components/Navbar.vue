@@ -19,6 +19,8 @@
             <li><router-link class="dropdown-item" to="/viewc" exact>Candidate List</router-link></li>
             <li><router-link class="dropdown-item" to="/addj" exact>Add Job</router-link></li>
             <li><router-link class="dropdown-item" to="/viewj" exact>Job List</router-link></li>
+            <li><router-link class="dropdown-item" to="/adda" exact>Add Application</router-link></li>
+            <li><router-link class="dropdown-item" to="/viewa" exact>All Applications</router-link></li>
             <li><hr class="dropdown-divider"></li>
             <li><router-link v-if="loggedInUser.role_id=='ADMIN'" class="dropdown-item" to="/addu" exact>Add User</router-link></li>
           </ul>
