@@ -96,7 +96,7 @@ export default {
                 // candidate_id: "",
                 // expected_salary: "",
                 // actual_salary: "",
-                // is_job_offered: ""
+                is_job_offered: "No"
             }
         }
     },
@@ -105,8 +105,7 @@ export default {
             try {
                 let response = await this.$http.post("application/register", this.application);
                 if (response != null) {
-                    this.application = {}
-
+                    this.application = {is_job_offered: "No"}
 
                 }
             } catch (err) {
