@@ -24,7 +24,7 @@
                             <div class="row mb-3">
                                 <label for="title" class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
-                                    <input v-model="job.title" type="text" class="form-control" id="title">
+                                    <input placeholder="Enter Job Title" v-model="job.title" type="text" class="form-control" id="title">
                                 </div>
                             </div>
 
@@ -32,15 +32,15 @@
                             <div class="row mb-3">
                                 <label for="openings" class="col-sm-2 col-form-label">Openings</label>
                                 <div class="col-sm-10">
-                                    <input v-model="job.openings" type="number" class="form-control" id="openings">
+                                    <input placeholder="Enter no of openings " v-model="job.openings" type="number" class="form-control" id="openings">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="disciption" class="col-sm-2 col-form-label">Discription</label>
                                 <div class="col-sm-10">
-                                    <input v-model="job.discription" type="text" class="form-control"
-                                        id="disciption">
+                                    <textarea placeholder="Job Discription" v-model="job.discription" type="text" class="form-control"
+                                       rows="2" id="disciption"></textarea>
                                 </div>
                             </div>
 

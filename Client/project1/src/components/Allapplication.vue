@@ -8,8 +8,8 @@
       <th scope="col">Application id</th>
       <th scope="col">Job id </th>
       <th scope="col">Candidate id</th>
-      <th scope="col">expected salary </th>
-      <th scope="col">actual salary </th>
+      <th scope="col">Expected Salary </th>
+      <th scope="col">Actual Salary </th>
       <th scope="col">Is Job offered </th>
       <th scope="col">Delete/Update </th>
       
@@ -26,10 +26,10 @@
       <td>{{application.actual_salary}}</td>
       <td>{{application.is_job_offered}}</td>
       <td>
-        <i @click="deleteApplication(application)" class="fa-solid fa-trash mx-2"></i>
+        <i @click="deleteApplication(application)" class="fa-solid fa-trash mx-4"></i>
         
         <i @click="add(application)"  data-bs-toggle="modal" data-bs-target="#exampleModal" 
-        class="fa-solid fa-pen-to-square mx-2" ></i>
+        class="fa-solid fa-pen-to-square mx-3" ></i>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -42,15 +42,15 @@
                     <div class="modal-body" >                        
                         <div class="input-group mb-3">
                                 <span class="input-group-text">Expected Salary</span>
-                                <input type="number"  v-model="application1.expected_salary" class="form-control"
-                                    aria-label="Amount (to the nearest dollar)">
+                                <input type="string" v-model="application1.expected_salary" class="form-control"
+                                    >
                                 <span class="input-group-text">INR</span>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Actual Salary</span>
-                                <input type="number" class="form-control"  v-model="application1.actual_salary"
-                                    aria-label="Amount (to the nearest dollar)">
+                                <input type="string" class="form-control"  v-model="application1.actual_salary"
+                                    >
                                 <span class="input-group-text">INR</span>
                             </div>
 
@@ -96,7 +96,10 @@
 export default {
     data() {
         return {
+            candidates: {},
+            jobs: {},
             application1:{
+
             },
             applications: {}
         }
@@ -105,7 +108,6 @@ export default {
         async add(application)
         {
             this.application1=application
-
         },
         async deleteApplication(application) {
             try {
@@ -121,6 +123,9 @@ export default {
         },
         async updateApplication(application) {
             try {
+                console.log(this.application1);
+                if(this.application1.actual_salary=='')this.application1.actual_salary=" "
+                if(this.application1.expected_salary=='')this.application1.expected_salary=" "
                 let responce = await this.$http.put(`application/updateapplication/${application._id}`,this.application1);
                 console.log(responce)
                 
@@ -145,10 +150,40 @@ export default {
 
                 console.log(err.response);
             }
+        },async getDetails1() {
+            try {
+               let  responce = await this.$http.get("candidate/get");
+                this.candidates=responce.data
+                // console.log(this.candidates)
+                if (this.candidates == null) {
+                    this.$router.push("/addc");
+
+                }
+            } catch (err) {
+
+                console.log(err.response);
+            }
+        },
+        async getDetails2() {
+            try {
+               let  responce = await this.$http.get("job/get");
+                this.jobs=responce.data
+                // console.log(this.jobs)
+                if (this.jobs == null) {
+                    this.$router.push("/addj");
+
+                }
+            } catch (err) {
+
+                console.log(err.response);
+            }
         }
+
     },
     created() {
         this.getDetails();
+        this.getDetails1();
+        this.getDetails2();
     },
 
 }

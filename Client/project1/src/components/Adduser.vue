@@ -1,5 +1,5 @@
-<template >
-    <div class="container mt-5">
+<template  >
+    <div v-if="loggedInUser.role_id=='ADMIN'" class="container mt-5">
         <div class="row  ">
             <div class="coloum">
                 <div class="card  mx-auto shadow-lg">
@@ -16,7 +16,7 @@
                             <div class="row mb-3">
                                 <label  for="name" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input v-model="user.name" type="text" class="form-control" id="name">
+                                    <input placeholder="Enter Full Name" v-model="user.name" type="text" class="form-control" id="name">
                                 </div>
                             </div>
 
@@ -25,7 +25,7 @@
                              <div class="row mb-3">
                                 <label  for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input v-model="user.email" type="email" class="form-control" id="inputEmail3">
+                                    <input placeholder="Enter Email Address" v-model="user.email" type="email" class="form-control" id="inputEmail3">
                                 </div>
                             </div>
                             
@@ -34,7 +34,7 @@
                             <div class="row mb-3">
                                 <label  for="inputname" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input v-model="user.password" type="text" class="form-control" id="inputname">
+                                    <input placeholder="Enter password" v-model="user.password" type="text" class="form-control" id="inputname">
                                 </div>
                             </div>
 
@@ -42,7 +42,7 @@
                             <div class="row mb-3">
                                 <label  for="experience" class="col-sm-2 col-form-label">Role Id</label>
                                 <div class="col-sm-10">
-                                    <input v-model="user.role_id" type="text" class="form-control" id="experience">
+                                    <input placeholder="Enter Role Id" v-model="user.role_id" type="text" class="form-control" id="experience">
                                 </div>
                             </div>
 
@@ -56,6 +56,9 @@
             </div>
         </div>
     </div>
+    <div v-else class =" text-center my-4">
+    <h1 >Only Admin Access</h1>
+  </div>
 
 
 </template>

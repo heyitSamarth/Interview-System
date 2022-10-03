@@ -14,9 +14,9 @@
 
                             <!-- Name input -->
                             <div class="row mb-3">
-                                <label  for="inputname" class="col-sm-2 col-form-label">Name</label>
+                                <label  for="inputname" class="col-sm-2 col-form-label">Full Name</label>
                                 <div class="col-sm-10">
-                                    <input v-model="candidate.name" type="text" class="form-control" id="inputname">
+                                    <input placeholder="Jhon Wick" v-model="candidate.name" type="text" class="form-control" id="inputname">
                                 </div>
                             </div>
 
@@ -24,7 +24,7 @@
                             <div class="row mb-3">
                                 <label  for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input v-model="candidate.email" type="email" class="form-control" id="inputEmail3">
+                                    <input placeholder="abc@xyz.com" v-model="candidate.email" type="email" class="form-control" id="inputEmail3">
                                 </div>
                             </div>
 
@@ -39,7 +39,7 @@
                             <div class="row mb-3">
                                 <label  for="experience" class="col-sm-2 col-form-label">Experience</label>
                                 <div class="col-sm-10">
-                                    <input v-model="candidate.experience" type="number" class="form-control" id="experience">
+                                    <input placeholder="Work Experience" v-model="candidate.experience" type="number" class="form-control" id="experience">
                                 </div>
                             </div>
 
@@ -47,7 +47,7 @@
                             <div class="row mb-3">
                                 <label  for="rl" class="col-sm-2 col-form-label">Resume Link</label>
                                 <div class="col-sm-10">
-                                    <input v-model="candidate.resume_link" type="text" class="form-control" id="rl">
+                                    <input placeholder="Resume Link" v-model="candidate.resume_link" type="text" class="form-control" id="rl">
                                 </div>
                             </div>
 

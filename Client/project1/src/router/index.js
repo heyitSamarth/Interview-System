@@ -16,42 +16,66 @@ const routes= [
       path: '/uinfo',
     name: ' User Info ',
     component:()=>import("../components/Info.vue") ,
+    meta: {
+      requiresAuth: true
+    }
     },
     {
       path: '/addc',
     name: ' Add Candidate ',
     component:()=>import("../components/Addcandidate.vue") ,
+    meta: {
+      requiresAuth: true
+    }
     },
    
     {
       path: '/viewc',
     name: ' Candidate List ',
     component:()=>import("../components/Allcandidates.vue") ,
+    meta: {
+      requiresAuth: true
+    }
     },
     {
       path: '/addj',
     name: ' Add Job ',
     component:()=>import("../components/Addjob") ,
+    meta: {
+      requiresAuth: true
+    }
     },
     {
       path: '/viewj',
     name: ' Job List ',
     component:()=>import("../components/Alljob.vue") ,
+    meta: {
+      requiresAuth: true
+    }
     },
     {
       path: '/addu',
     name: ' Add User ',
     component:()=>import("../components/Adduser.vue") ,
+    meta: {
+      requiresAuth: true
+    }
     },
     {
       path: '/adda',
     name: ' Add Application ',
     component:()=>import("../components/Addapplication.vue") ,
+    meta: {
+      requiresAuth: true
+    }
     },
     {
       path: '/viewa',
     name: ' All Applications ',
     component:()=>import("../components/Allapplication.vue") ,
+    meta: {
+      requiresAuth: true
+    }
     },
     {
           path: "/login",
