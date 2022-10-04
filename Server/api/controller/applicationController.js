@@ -1,10 +1,13 @@
 const Application = require("../model/Application");
+var id =require("../authentication/auth")
 
 exports.registerNewApplication = async (req, res) => {
     try {
+      const createdbyid=id(req,res)
       const application = new Application({
         job_id:req.body.job_id,
         candidate_id:req.body.candidate_id,
+        createdby_id:createdbyid,
         expected_salary:req.body.expected_salary,
         actual_salary:req.body.actual_salary,
         is_job_offered:req.body.is_job_offered,

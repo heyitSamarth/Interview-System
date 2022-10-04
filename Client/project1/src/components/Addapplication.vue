@@ -103,7 +103,7 @@ export default {
     methods: {
         async addDetails() {
             try {
-                let response = await this.$http.post("application/register", this.application);
+                let response = await this.$http.post("application/register", this.application,{headers:{'auth-token':localStorage.getItem('jwt')}});
                 if (response != null) {
                     this.application = {is_job_offered: "No"}
 

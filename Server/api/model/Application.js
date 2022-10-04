@@ -9,6 +9,11 @@ const applicationSchema = mongoose.Schema({
     type: String,
     required: [true, "Please Include your application"]
   },
+  createdby_id:
+  {
+    type: String,
+    required: [true, "Please Include your application"]
+  },
   expected_salary: {
     type: String,
   },

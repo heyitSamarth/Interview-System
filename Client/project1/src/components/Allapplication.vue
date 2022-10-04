@@ -6,8 +6,9 @@
   <thead class="table-dark">
     <tr>
       <th scope="col">Application id</th>
-      <th scope="col">Job id </th>
-      <th scope="col">Candidate id</th>
+      <th scope="col">Job Role</th>
+      <th scope="col">Candidate</th>
+      <th scope="col">Createdby id</th>
       <th scope="col">Expected Salary </th>
       <th scope="col">Actual Salary </th>
       <th scope="col">Is Job offered </th>
@@ -19,9 +20,10 @@
   <tbody  v-for = "application in this.applications" :key="application._id">
     <tr>
         
-      <th >{{application._id}}</th>
-      <td>{{application.job_id}}</td>
-      <td>{{application.candidate_id}}</td>
+      <th>{{application._id}}</th>
+      <td>{{title(application.job_id)}}</td>
+      <td>{{name(application.candidate_id)}}</td>
+      <td>{{application.createdby_id}}</td>
       <td>{{application.expected_salary}}</td>
       <td>{{application.actual_salary}}</td>
       <td>{{application.is_job_offered}}</td>
@@ -98,13 +100,12 @@ export default {
         return {
             candidates: {},
             jobs: {},
-            application1:{
-
-            },
+            application1:{},
             applications: {}
         }
     },
     methods: {
+        
         async add(application)
         {
             this.application1=application
@@ -177,7 +178,25 @@ export default {
 
                 console.log(err.response);
             }
-        }
+        },
+        name(id){
+            var candidate
+            for(candidate in this.candidates)
+            {
+                if(this.candidates[candidate]._id===id)
+                return this.candidates[candidate].name
+            }
+            return null
+        },
+        title(id){
+            var job
+            for(job in this.jobs)
+            {
+                if(this.jobs[job]._id===id)
+                return this.jobs[job].title
+            }
+            return null
+        },
 
     },
     created() {
