@@ -5,6 +5,7 @@ const auth=require("../../config/auth")
 
 router.post("/register", userController.registerNewUser);
 router.post("/login", userController.loginUser);
+router.get("/getall",userController.getAllUsers);
 router.get("/get",auth, userController.getUserDetails);
 
 module.exports = router;

@@ -54,7 +54,7 @@
                             <div class="row mb-3">
                                 <label  for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
                                 <div class="col-sm-10">
-                                    <label class="my-2">{{loggedInUser._id}}</label>
+                                    <label class="my-2">{{loggedInUser.name}} => {{loggedInUser._id}}</label>
                                     <!-- <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb" > -->
                                 </div>
                             </div>
@@ -80,6 +80,7 @@ export default {
     },
     data: function () {
         return {
+            user:{},
             candidate: {
                 name: "",
                 email: "",

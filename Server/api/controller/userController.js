@@ -35,5 +35,14 @@ exports.registerNewUser = async (req, res) => {
       res.status(400).json({ err: err });
     }
   };
+  exports.getAllUsers = async (req, res) => {
+    try {
+        const user = await User.find()
+        res.json(user)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Some error occured");
+    }
+};
   
 exports.getUserDetails = async (req, res) => { await res.json(req.userData);};

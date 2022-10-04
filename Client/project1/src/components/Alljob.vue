@@ -6,7 +6,7 @@
                     <div class="card-body"  >
                         <h5 class="card-header">{{job.title}}</h5>
                         <!-- <p class="card-text"> Job id : {{job.job_id}}</p> -->
-                        <p class="card-text"> Created By id : {{job.createdby_id}}</p>
+                        <p class="card-text"> Created By : {{name(job.createdby_id)}}  ( {{role(job.createdby_id)}} )</p>
                         <p class="card-text"> No. of Openings : {{job.openings}}</p>
                         <p class="card-text"> Job Discription : {{job.discription}}</p>
                         <i @click="deleteJob(job)" class="fa-solid fa-trash mx-2"></i>
@@ -22,6 +22,7 @@
 export default {
     data(){
         return{
+            users:{},
             jobs:{}
         }
     },
@@ -50,12 +51,46 @@ export default {
 
                 console.log(err.response);
             }
-        }
+        },
+        async getDetails2() {
+            try {
+               let  responce = await this.$http.get("user/getall");
+                this.users=responce.data
+                // console.log(this.candidates)
+                if (this.users == null) {
+                    this.$router.push("/addu");
+
+                }
+            } catch (err) {
+
+                console.log(err.response);
+            }
+        },
+        name(id){
+            var user
+            for(user in this.users)
+            {
+                if(this.users[user]._id===id)
+                return this.users[user].name
+            }
+            return null
+        },
+        role(id){
+            var user
+            for(user in this.users)
+            {
+                if(this.users[user]._id===id)
+                return this.users[user].role_id
+            }
+            return null
+        },
+    
     },
+    
     created() {
         this.getDetails();
+        this.getDetails2();
     },
-
 }
 </script>
 <style lang="">

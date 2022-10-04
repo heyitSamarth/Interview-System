@@ -41,6 +41,8 @@ const roleRoutes = require("./api/route/job"); //bring in our job routes
 app.use("/job", roleRoutes);
 const applicationRoutes = require("./api/route/application"); //bring in our application routes
 app.use("/application", applicationRoutes);
+const interviewRoutes = require("./api/route/interview"); //bring in our interview routes
+app.use("/interview", interviewRoutes);
 
 app.listen(PORT, () => {
   console.log(`project1 is running on ${PORT}`);

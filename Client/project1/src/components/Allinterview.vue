@@ -5,32 +5,36 @@
         <table class="table align-middle border border-3 rounded table-hover">
   <thead class="table-dark">
     <tr>
-      <!-- <th scope="col">Application id</th> -->
-      <th scope="col">Job Role</th>
-      <th scope="col">Candidate</th>
-      <th scope="col">Createdby id</th>
-      <th scope="col">Expected Salary </th>
-      <th scope="col">Actual Salary </th>
-      <th scope="col">Is Job offered </th>
-      <th scope="col">Delete/Update </th>
+      <th scope="col">Application of </th>
+      <th scope="col">Interviewer</th>
+      <th scope="col">Arranged by</th>
+      <th scope="col">level</th>
+      <th scope="col">Interview Date</th>
+      <th scope="col">Interview Time</th>
+      <th scope="col">Feedback</th>
+      <th scope="col">Status</th>
+      <th scope="col">Delete </th>
+      <th scope="col">Update </th>
       
 
     </tr>
   </thead>
-  <tbody  v-for = "application in this.applications" :key="application._id">
+  <tbody  v-for = "interview in this.interviews" :key="interview._id">
     <tr>
         
-      <!-- <th>{{application._id}}</th> -->
-      <td>{{title(application.job_id)}}</td>
-      <td>{{name(application.candidate_id)}}</td>
-      <td>{{name1(application.createdby_id)}} ({{role(application.createdby_id)}})</td>
-      <td>{{application.expected_salary}}</td>
-      <td>{{application.actual_salary}}</td>
-      <td>{{application.is_job_offered}}</td>
+      <td>{{aname(interview.application_id)}} for {{atitle(interview.application_id)}}</td>
+      <td>{{name1(interview.interviewer_id)}} ( {{role(interview.interviewer_id)}} )</td>
+      <td>{{name1(interview.arrangedby_id)}}  ( {{role(interview.arrangedby_id)}} )</td>
+      <td>{{interview.level}}</td>
+      <td>{{interview.interview_date}}</td>
+      <td>{{interview.interview_time}}</td>
+      <td>{{interview.feedback}}</td>
+      <td>{{interview.status}}</td>
       <td>
-        <i @click="deleteApplication(application)" class="fa-solid fa-trash mx-4"></i>
-        
-        <i @click="add(application)"  data-bs-toggle="modal" data-bs-target="#exampleModal" 
+        <i @click="deleteInterview(interview)" class="fa-solid fa-trash mx-3"></i>
+      </td>
+      <td>
+        <i @click="add(interview)"  data-bs-toggle="modal" data-bs-target="#exampleModal" 
         class="fa-solid fa-pen-to-square mx-3" ></i>
 
                 <!-- Modal -->
@@ -38,50 +42,36 @@
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Application</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update interviews</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" >                        
                         <div class="input-group mb-3">
-                                <span class="input-group-text">Expected Salary</span>
-                                <input type="number" v-model="application1.expected_salary" class="form-control"
-                                    >
-                                <span class="input-group-text">INR</span>
+                                <label for="disciption" class="input-group-text">Feedback</label>
+                                
+                                    <textarea placeholder="Give Interview Feedback" v-model="interview1.feedback" type="text" class="form-control"
+                                       rows="1" id="disciption"></textarea>
+                                
                             </div>
 
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Actual Salary</span>
-                                <input type="number" class="form-control"  v-model="application1.actual_salary"
-                                    >
-                                <span class="input-group-text">INR</span>
+                                <span class="input-group-text">Status</span>
+                                <input placeholder='Give Interview Feedback'  type="text" class="form-control"  v-model="interview1.status" >
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Date</span>
+                                <input placeholder='Give Interview Feedback'  type="date" class="form-control"  v-model="interview1.date"  >
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Time</span>
+                                <input placeholder='Give Interview Feedback'  type="time" class="form-control"  v-model="interview1.time" >
                             </div>
 
-
-                            <div class="row mb-3">
-                                <label for="rl" class="col-sm-2 col-form-label">Is Job Offered</label>
-                                <div class="col-sm-10">
-                                    
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" value ="No" v-model="application1.is_job_offered"
-                                            id="flexRadioDefault2" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            No
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" value ="Yes"   v-model="application1.is_job_offered"
-                                            id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Yes
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                     
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-                    <button type="button" class="btn btn-primary"  @click="updateApplication(application1)" data-bs-dismiss="modal" >Save changes</button>
+                    <button type="button" class="btn btn-primary"  @click="updateInterview(interview1)" data-bs-dismiss="modal" >Save changes</button>
                     </div>
                 </div>
                 </div>
@@ -100,20 +90,21 @@ export default {
         return {
             candidates: {},
             jobs: {},
-            application1:{},
-            applications: {},
+            interview1:{},
+            applications:{},
+            interviews: {},
             users:{},
         }
     },
     methods: {
         
-        async add(application)
+        async add(interview)
         {
-            this.application1=application
+            this.interview1=interview
         },
-        async deleteApplication(application) {
+        async deleteInterview(interview) {
             try {
-                let responce = await this.$http.delete(`application/deleteapplication/${application._id}`);
+                let responce = await this.$http.delete(`interview/deleteinterview/${interview._id}`);
                 console.log(responce)
                 this.getDetails()
 
@@ -123,14 +114,10 @@ export default {
                 console.log(err.response);
             }
         },
-        async updateApplication(application) {
+        async updateInterview(interview) {
             try {
-                // console.log(this.application1);
-                // if(this.application1.actual_salary=='')this.application1.actual_salary=" "
-                // if(this.application1.expected_salary=='')this.application1.expected_salary=" "
-                let responce = await this.$http.put(`application/updateapplication/${application._id}`,this.application1);
+                let responce = await this.$http.put(`interview/updateinterview/${interview._id}`,this.interview1);
                 console.log(responce)
-                
                 this.getDetails()
 
             } catch (err) {
@@ -141,10 +128,10 @@ export default {
 
         async getDetails() {
             try {
-                let responce = await this.$http.get("application/get");
-                this.applications = responce.data
-                // console.log(this.applications)
-                if (this.applications == null) {
+                let responce = await this.$http.get("interview/get");
+                this.interviews = responce.data
+                // console.log(this.interviews)
+                if (this.interviews == null) {
                     this.$router.push("/addc");
 
                 }
@@ -194,6 +181,40 @@ export default {
                 console.log(err.response);
             }
         },
+        async getDetails4() {
+            try {
+                let responce = await this.$http.get("application/get");
+                this.applications = responce.data
+                // console.log(this.applications)
+                if (this.applications == null) {
+                    this.$router.push("/addc");
+
+                }
+            } catch (err) {
+
+                console.log(err.response);
+            }
+        },
+        aname(id)
+        {
+            var a
+            for(a in this.applications)
+            {
+                if(this.applications[a]._id===id)
+                return this.name(this.applications[a].candidate_id)
+            }
+            return null
+        },
+        atitle(id)
+        {
+            var a
+            for(a in this.applications)
+            {
+                if(this.applications[a]._id===id)
+                return this.title(this.applications[a].job_id)
+            }
+            return null
+        },
         name(id){
             var candidate
             for(candidate in this.candidates)
@@ -238,6 +259,7 @@ export default {
         this.getDetails1();
         this.getDetails2();
         this.getDetails3();
+        this.getDetails4();
     },
 
 }

@@ -66,21 +66,24 @@ exports.deleteApplication =async (req, res) => {
          const newApplication={}
          newApplication.job_id=application.job_id
          newApplication.candidate_id=application.candidate_id
-         if(expected_salary){newApplication.expected_salary=expected_salary}
-         else
-         {
-            newApplication.expected_salary=application.expected_salary
-         }
-         if(actual_salary){newApplication.actual_salary=actual_salary}
-         else
-         {
-            newApplication.actual_salary=application.actual_salary
-         }
-         if(is_job_offered){newApplication.is_job_offered=is_job_offered}
-         else
-         {
-            newApplication.is_job_offered=application.is_job_offered
-         }
+        //  if(expected_salary)
+         {newApplication.expected_salary=expected_salary}
+        //  else
+        //  {
+        //     newApplication.expected_salary=application.expected_salary
+        //  }
+        //  if(actual_salary)
+         {newApplication.actual_salary=actual_salary}
+        //  else
+        //  {
+        //     newApplication.actual_salary=application.actual_salary
+        //  }
+        //  if(is_job_offered)
+         {newApplication.is_job_offered=is_job_offered}
+        //  else
+        //  {
+        //     newApplication.is_job_offered=application.is_job_offered
+        //  }
 
         //  let application = await Application.findById(req.params.id)
          

@@ -78,6 +78,22 @@ const routes= [
     }
     },
     {
+      path: '/addi',
+    name: ' Add Interview ',
+    component:()=>import("../components/Addinterview.vue") ,
+    meta: {
+      requiresAuth: true
+    }
+    },
+    {
+      path: '/viewi',
+    name: ' Interviews ',
+    component:()=>import("../components/Allinterview.vue") ,
+    meta: {
+      requiresAuth: true
+    }
+    },
+    {
           path: "/login",
           name: "Login",
           component: Login
