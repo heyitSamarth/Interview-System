@@ -19,8 +19,8 @@
 
     </tr>
   </thead>
-  <tbody  v-for = "interview in this.interviews" :key="interview._id">
-    <tr>
+  <tbody  v-for = "interview in this.interviews" :key="interview._id" >
+    <tr v-if="interview.interviewer_id==loggedInUser._id || ( role(loggedInUser._id)==='ADMIN' )|| ( role(loggedInUser._id)==='HR' )">
         
       <td>{{aname(interview.application_id)}} for {{atitle(interview.application_id)}}</td>
       <td>{{name1(interview.interviewer_id)}} ( {{role(interview.interviewer_id)}} )</td>
@@ -85,7 +85,11 @@
 </template>
 
 <script>
+    import {mapState} from "vuex"
 export default {
+    computed:{
+      ...mapState(["loggedInUser"])
+    },
     data() {
         return {
             candidates: {},
