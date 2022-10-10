@@ -56,15 +56,15 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Status</span>
-                                <input placeholder='Give Interview Feedback'  type="text" class="form-control"  v-model="interview1.status" >
+                                <input placeholder='Give Interview status'  type="text" class="form-control"  v-model="interview1.status" >
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Date</span>
-                                <input placeholder='Give Interview Feedback'  type="date" class="form-control"  v-model="interview1.date"  >
+                                <input type="date" class="form-control"  v-model="interview1.date"  >
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Time</span>
-                                <input placeholder='Give Interview Feedback'  type="time" class="form-control"  v-model="interview1.time" >
+                                <input type="time" class="form-control"  v-model="interview1.time" >
                             </div>
 
                     
