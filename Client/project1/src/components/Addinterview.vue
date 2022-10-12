@@ -34,6 +34,15 @@
                                 <input type="number" v-model="interview.level" class="form-control">
                             </div>
 
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Date</span>
+                                <input type="date" class="form-control"  v-model="interview.interview_date"  >
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Time</span>
+                                <input type="time" class="form-control"  v-model="interview.interview_time" >
+                            </div>
+
                             <!-- Submit button -->
                             <button type="Submit" class="btn btn-primary btn-block mb-4" value="Register">Add</button>
 

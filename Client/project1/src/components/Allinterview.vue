@@ -58,13 +58,13 @@
                                 <span class="input-group-text">Status</span>
                                 <input placeholder='Give Interview status'  type="text" class="form-control"  v-model="interview1.status" >
                             </div>
-                            <div class="input-group mb-3">
+                            <div v-if="loggedInUser.role_id=='HR' || loggedInUser.role_id=='ADMIN'" class="input-group mb-3">
                                 <span class="input-group-text">Date</span>
-                                <input type="date" class="form-control"  v-model="interview1.date"  >
+                                <input type="date" class="form-control"  v-model="interview1.interview_date"  >
                             </div>
-                            <div class="input-group mb-3">
+                            <div v-if="loggedInUser.role_id=='HR' || loggedInUser.role_id=='ADMIN'" class="input-group mb-3">
                                 <span class="input-group-text">Time</span>
-                                <input type="time" class="form-control"  v-model="interview1.time" >
+                                <input type="time" class="form-control"  v-model="interview1.interview_time" >
                             </div>
 
                     
