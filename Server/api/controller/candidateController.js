@@ -1,4 +1,5 @@
 const Candidate = require("../model/Candidate");
+const User = require("../model/User");
 var id =require("../authentication/auth")
 
 
