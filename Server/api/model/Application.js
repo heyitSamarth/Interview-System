@@ -1,17 +1,18 @@
 const mongoose = require("mongoose");
+const Schema=mongoose.Schema;
 
 const applicationSchema = mongoose.Schema({
   job_id: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include your job"]
   },
   candidate_id: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include your application"]
   },
   createdby_id:
   {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include your application"]
   },
   expected_salary: {

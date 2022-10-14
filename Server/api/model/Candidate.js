@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema=mongoose.Schema;
 
 const candidateSchema = mongoose.Schema({
   name: {
@@ -19,7 +20,7 @@ const candidateSchema = mongoose.Schema({
   },
   createdby_id:
   {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include your role id"]
   },
 

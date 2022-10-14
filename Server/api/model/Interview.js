@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const Schema=mongoose.Schema;
 
 const interviewSchema = mongoose.Schema({
   application_id: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include your job"]
   },
   level: {
@@ -10,12 +11,12 @@ const interviewSchema = mongoose.Schema({
     required: [true, "Please Include your interview"]
   },
   arrangedby_id:{
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include your interview"]
   },
   interviewer_id:
   {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include your interview"]
   },
   interview_time: {

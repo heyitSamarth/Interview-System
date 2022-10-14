@@ -31,6 +31,7 @@ exports.getAllInterview = async (req, res) => {
     try {
         const interview = await Interview.find()
         res.json(interview)
+        
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occured");

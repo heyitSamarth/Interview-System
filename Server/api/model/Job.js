@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema=mongoose.Schema;
 
 const jobSchema = mongoose.Schema({
   title:
@@ -16,7 +17,7 @@ const jobSchema = mongoose.Schema({
   },
   createdby_id:
   {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "Please Include created by id"]
   },
 
