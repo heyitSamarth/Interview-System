@@ -21,9 +21,9 @@
     <tr>
         
       <!-- <th>{{application._id}}</th> -->
-      <td>{{title(application.job_id)}}</td>
-      <td>{{name(application.candidate_id)}}</td>
-      <td>{{name1(application.createdby_id)}} ({{role(application.createdby_id)}})</td>
+      <td>{{application.job[0].title}}</td>
+      <td>{{application.candidate[0].name}}</td>
+      <td>{{application.createdby[0].name}} ({{application.createdby[0].role_id}})</td>
       <td>{{application.expected_salary}}</td>
       <td>{{application.actual_salary}}</td>
       <td>{{application.is_job_offered}}</td>
@@ -154,92 +154,93 @@ export default {
 
                 console.log(err.response);
             }
-        },async getDetails1() {
-            try {
-               let  responce = await this.$http.get("candidate/get");
-                this.candidates=responce.data
-                // console.log(this.candidates)
-                if (this.candidates == null) {
-                    this.$router.push("/addc");
+        },
+        //async getDetails1() {
+        //     try {
+        //        let  responce = await this.$http.get("candidate/get");
+        //         this.candidates=responce.data
+        //         // console.log(this.candidates)
+        //         if (this.candidates == null) {
+        //             this.$router.push("/addc");
 
-                }
-            } catch (err) {
+        //         }
+        //     } catch (err) {
 
-                console.log(err.response);
-            }
-        },
-        async getDetails2() {
-            try {
-               let  responce = await this.$http.get("job/get");
-                this.jobs=responce.data
-                // console.log(this.jobs)
-                if (this.jobs == null) {
-                    this.$router.push("/addj");
+        //         console.log(err.response);
+        //     }
+        // },
+        // async getDetails2() {
+        //     try {
+        //        let  responce = await this.$http.get("job/get");
+        //         this.jobs=responce.data
+        //         // console.log(this.jobs)
+        //         if (this.jobs == null) {
+        //             this.$router.push("/addj");
 
-                }
-            } catch (err) {
+        //         }
+        //     } catch (err) {
 
-                console.log(err.response);
-            }
-        },
-        async getDetails3() {
-            try {
-               let  responce = await this.$http.get("user/getall");
-                this.users=responce.data
-                // console.log(this.candidates)
-                if (this.users == null) {
-                    this.$router.push("/addu");
+        //         console.log(err.response);
+        //     }
+        // },
+        // async getDetails3() {
+        //     try {
+        //        let  responce = await this.$http.get("user/getall");
+        //         this.users=responce.data
+        //         // console.log(this.candidates)
+        //         if (this.users == null) {
+        //             this.$router.push("/addu");
 
-                }
-            } catch (err) {
+        //         }
+        //     } catch (err) {
 
-                console.log(err.response);
-            }
-        },
-        name(id){
-            var candidate
-            for(candidate in this.candidates)
-            {
-                if(this.candidates[candidate]._id===id)
-                return this.candidates[candidate].name
-            }
-            return null
-        },
-        title(id){
-            var job
-            for(job in this.jobs)
-            {
-                if(this.jobs[job]._id===id)
-                return this.jobs[job].title
-            }
-            return null
-        },
-        name1(id){
-            var user
-            for(user in this.users)
-            {
-                if(this.users[user]._id===id)
-                return this.users[user].name
-            }
-            return null
-        },
-        role(id){
-            var user
-            for(user in this.users)
-            {
-                if(this.users[user]._id===id)
-                return this.users[user].role_id
-            }
-            return null
-        },
+        //         console.log(err.response);
+        //     }
+        // },
+        // name(id){
+        //     var candidate
+        //     for(candidate in this.candidates)
+        //     {
+        //         if(this.candidates[candidate]._id===id)
+        //         return this.candidates[candidate].name
+        //     }
+        //     return null
+        // },
+        // title(id){
+        //     var job
+        //     for(job in this.jobs)
+        //     {
+        //         if(this.jobs[job]._id===id)
+        //         return this.jobs[job].title
+        //     }
+        //     return null
+        // },
+        // name1(id){
+        //     var user
+        //     for(user in this.users)
+        //     {
+        //         if(this.users[user]._id===id)
+        //         return this.users[user].name
+        //     }
+        //     return null
+        // },
+        // role(id){
+        //     var user
+        //     for(user in this.users)
+        //     {
+        //         if(this.users[user]._id===id)
+        //         return this.users[user].role_id
+        //     }
+        //     return null
+        // },
     
 
     },
     created() {
         this.getDetails();
-        this.getDetails1();
-        this.getDetails2();
-        this.getDetails3();
+        // this.getDetails1();
+        // this.getDetails2();
+        // this.getDetails3();
     },
 
 }

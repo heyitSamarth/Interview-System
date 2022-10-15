@@ -27,8 +27,26 @@ exports.registerNewJob = async (req, res) => {
 exports.getJobDetails = async (req, res) => {
 
     try {
-        const job = await Job.find()
-        res.json(job)
+        // const job = await Job.find()
+        // res.json(job)
+        Job.aggregate([
+          {
+            $lookup:
+            {
+              from: "users",
+              localField: "createdby_id",
+              foreignField: "_id",
+              as: "createdby"
+            }
+          }
+          
+        ]).then((result) => {
+          res.json(result)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occured");

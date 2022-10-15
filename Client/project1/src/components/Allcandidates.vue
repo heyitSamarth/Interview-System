@@ -4,13 +4,13 @@
         <table class="table align-middle border border-3 rounded table-hover">
   <thead class="table-dark">
     <tr>
-    <th scope="col">Candidate id </th>
+    <!-- <th scope="col">Candidate id </th> -->
       <th scope="col">Candidate Name </th>
       <th scope="col">Created By </th>
       <th scope="col">Candidate Email</th>
       <th scope="col">Candidate Experience </th>
       <th scope="col">Candidate Resume </th>
-      <th scope="col">Delete/Update </th>
+      <th scope="col">Delete</th>
       
 
     </tr>
@@ -18,9 +18,9 @@
   <tbody  v-for = "candidate in this.candidates" :key="candidate._id">
     <tr>
         
-      <th >{{candidate._id}}</th>
+      <!-- <th >{{candidate._id}}</th> -->
       <td>{{candidate.name}}</td>
-      <td>{{name(candidate.createdby_id)}} ({{role(candidate.createdby_id)}})</td>
+      <td>{{candidate.createdby[0].name}} ( {{candidate.createdby[0].role_id}} )</td>
       <td>{{candidate.email}}</td>
       <td>{{candidate.experience}}</td>
       <td><a :href="'//'+candidate.resume_link" target="_blank">Resume</a></td>
@@ -68,44 +68,44 @@ export default {
                 console.log(err.response);
             }
         },
-        async getDetails2() {
-            try {
-               let  responce = await this.$http.get("user/getall");
-                this.users=responce.data
-                // console.log(this.candidates)
-                if (this.users == null) {
-                    this.$router.push("/addu");
+        // async getDetails2() {
+        //     try {
+        //        let  responce = await this.$http.get("user/getall");
+        //         this.users=responce.data
+        //         // console.log(this.candidates)
+        //         if (this.users == null) {
+        //             this.$router.push("/addu");
 
-                }
-            } catch (err) {
+        //         }
+        //     } catch (err) {
 
-                console.log(err.response);
-            }
-        },
-        name(id){
-            var user
-            for(user in this.users)
-            {
-                if(this.users[user]._id===id)
-                return this.users[user].name
-            }
-            return null
-        },
-        role(id){
-            var user
-            for(user in this.users)
-            {
-                if(this.users[user]._id===id)
-                return this.users[user].role_id
-            }
-            return null
-        },
+        //         console.log(err.response);
+        //     }
+        // },
+        // name(id){
+        //     var user
+        //     for(user in this.users)
+        //     {
+        //         if(this.users[user]._id===id)
+        //         return this.users[user].name
+        //     }
+        //     return null
+        // },
+        // role(id){
+        //     var user
+        //     for(user in this.users)
+        //     {
+        //         if(this.users[user]._id===id)
+        //         return this.users[user].role_id
+        //     }
+        //     return null
+        // },
     
     },
     
     created() {
         this.getDetails();
-        this.getDetails2();
+        // this.getDetails2();
     },
 
 }

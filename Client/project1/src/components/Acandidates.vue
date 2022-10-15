@@ -9,8 +9,7 @@
                         <p class="card-text"> Created By id : {{candidate.createdby_id}}</p>
                         <p class="card-text"> Candidate email : {{candidate.email}}</p>
                         <p class="card-text"> Candidate experience : {{candidate.experience}}</p>
-                        <p class="card-text"> Candidate resume : 
-                            </p>
+                        <p class="card-text"> Candidate resume : </p>
                         <p   class="card-text"> </p>
                         <i @click="deleteCandidate(candidate)" class="fa-solid fa-trash mx-2"></i>
                         <!-- <i class="fa-solid fa-pen-to-square mx-2"></i> -->

@@ -27,8 +27,44 @@ exports.registerNewApplication = async (req, res) => {
   
 exports.getAllApplications = async (req, res) => {
     try {
-        const application = await Application.find()
-        res.json(application)
+        // const application = await Application.find()
+        // res.json(application)
+        Application.aggregate([
+          {
+            $lookup:
+            {
+              from: "users",
+              localField: "createdby_id",
+              foreignField: "_id",
+              as: "createdby"
+            }
+          },
+          {
+            $lookup:
+            {
+              from: "candidates",
+              localField: "candidate_id",
+              foreignField: "_id",
+              as: "candidate"
+            }
+          },
+          {
+            $lookup:
+            {
+              from: "jobs",
+              localField: "job_id",
+              foreignField: "_id",
+              as: "job"
+            }
+          }
+          
+        ]).then((result) => {
+          res.json(result)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Some error occured");

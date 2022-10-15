@@ -20,11 +20,11 @@
     </tr>
   </thead>
   <tbody  v-for = "interview in this.interviews" :key="interview._id" >
-    <tr v-if="interview.interviewer_id==loggedInUser._id || ( role(loggedInUser._id)==='ADMIN' )|| ( role(loggedInUser._id)==='HR' )">
+    <tr v-if="interview.interviewer_id==loggedInUser._id || ( loggedInUser.role_id)==='ADMIN' || ( loggedInUser.role_id==='HR' )">
         
-      <td>{{aname(interview.application_id)}} for {{atitle(interview.application_id)}}</td>
-      <td>{{name1(interview.interviewer_id)}} ( {{role(interview.interviewer_id)}} )</td>
-      <td>{{name1(interview.arrangedby_id)}}  ( {{role(interview.arrangedby_id)}} )</td>
+      <td>{{interview.application_id}} for {{interview.application_id}}</td>
+      <td>{{interview.interviewby[0].name}} ( {{interview.interviewby[0].role_id}} )</td>
+      <td>{{interview.arrangedby[0].name}}  ( {{interview.arrangedby[0].role_id}} )</td>
       <td>{{interview.level}}</td>
       <td>{{interview.interview_date}}</td>
       <td>{{interview.interview_time}}</td>
@@ -136,20 +136,7 @@ export default {
                 this.interviews = responce.data
                 // console.log(this.interviews)
                 if (this.interviews == null) {
-                    this.$router.push("/addc");
-
-                }
-            } catch (err) {
-
-                console.log(err.response);
-            }
-        },async getDetails1() {
-            try {
-               let  responce = await this.$http.get("candidate/get");
-                this.candidates=responce.data
-                // console.log(this.candidates)
-                if (this.candidates == null) {
-                    this.$router.push("/addc");
+                    this.$router.push("/adda");
 
                 }
             } catch (err) {
@@ -157,113 +144,127 @@ export default {
                 console.log(err.response);
             }
         },
-        async getDetails2() {
-            try {
-               let  responce = await this.$http.get("job/get");
-                this.jobs=responce.data
-                // console.log(this.jobs)
-                if (this.jobs == null) {
-                    this.$router.push("/addj");
+        // async getDetails1() {
+        //     try {
+        //        let  responce = await this.$http.get("candidate/get");
+        //         this.candidates=responce.data
+        //         // console.log(this.candidates)
+        //         if (this.candidates == null) {
+        //             this.$router.push("/addc");
 
-                }
-            } catch (err) {
+        //         }
+        //     } catch (err) {
 
-                console.log(err.response);
-            }
-        },
-        async getDetails3() {
-            try {
-               let  responce = await this.$http.get("user/getall");
-                this.users=responce.data
-                // console.log(this.candidates)
-                if (this.users == null) {
-                    this.$router.push("/addu");
+        //         console.log(err.response);
+        //     }
+        // },
+        // async getDetails2() {
+        //     try {
+        //        let  responce = await this.$http.get("job/get");
+        //         this.jobs=responce.data
+        //         // console.log(this.jobs)
+        //         if (this.jobs == null) {
+        //             this.$router.push("/addj");
 
-                }
-            } catch (err) {
+        //         }
+        //     } catch (err) {
 
-                console.log(err.response);
-            }
-        },
-        async getDetails4() {
-            try {
-                let responce = await this.$http.get("application/get");
-                this.applications = responce.data
-                // console.log(this.applications)
-                if (this.applications == null) {
-                    this.$router.push("/addc");
+        //         console.log(err.response);
+        //     }
+        // },
+        // async getDetails3() {
+        //     try {
+        //        let  responce = await this.$http.get("user/getall");
+        //         this.users=responce.data
+        //         // console.log(this.candidates)
+        //         if (this.users == null) {
+        //             this.$router.push("/addu");
 
-                }
-            } catch (err) {
+        //         }
+        //     } catch (err) {
 
-                console.log(err.response);
-            }
-        },
-        aname(id)
-        {
-            var a
-            for(a in this.applications)
-            {
-                if(this.applications[a]._id===id)
-                return this.name(this.applications[a].candidate_id)
-            }
-            return null
-        },
-        atitle(id)
-        {
-            var a
-            for(a in this.applications)
-            {
-                if(this.applications[a]._id===id)
-                return this.title(this.applications[a].job_id)
-            }
-            return null
-        },
-        name(id){
-            var candidate
-            for(candidate in this.candidates)
-            {
-                if(this.candidates[candidate]._id===id)
-                return this.candidates[candidate].name
-            }
-            return null
-        },
-        title(id){
-            var job
-            for(job in this.jobs)
-            {
-                if(this.jobs[job]._id===id)
-                return this.jobs[job].title
-            }
-            return null
-        },
-        name1(id){
-            var user
-            for(user in this.users)
-            {
-                if(this.users[user]._id===id)
-                return this.users[user].name
-            }
-            return null
-        },
-        role(id){
-            var user
-            for(user in this.users)
-            {
-                if(this.users[user]._id===id)
-                return this.users[user].role_id
-            }
-            return null
-        },
+        //         console.log(err.response);
+        //     }
+        // },
+        // async getDetails4() {
+        //     try {
+        //         let responce = await this.$http.get("application/get");
+        //         this.applications = responce.data
+        //         // console.log(this.applications)
+        //         if (this.applications == null) {
+        //             this.$router.push("/addc");
+
+        //         }
+        //     } catch (err) {
+
+        //         console.log(err.response);
+        //     }
+        // },
+        // aname(id)
+        // {
+        //     var a
+        //     for(a in this.applications)
+        //     {
+        //         if(this.applications[a]._id===id)
+        //         return this.name(this.applications[a].candidate_id)
+        //     }
+        //     return null
+        // },
+        // atitle(id)
+        // {
+        //     var a
+        //     for(a in this.applications)
+        //     {
+        //         if(this.applications[a]._id===id)
+        //         return this.title(this.applications[a].job_id)
+        //     }
+        //     return null
+        // },
+        // name(id){
+        //     var candidate
+        //     for(candidate in this.candidates)
+        //     {
+        //         if(this.candidates[candidate]._id===id)
+        //         return this.candidates[candidate].name
+        //     }
+        //     return null
+        // },
+        // title(id){
+        //     var job
+        //     for(job in this.jobs)
+        //     {
+        //         if(this.jobs[job]._id===id)
+        //         return this.jobs[job].title
+        //     }
+        //     return null
+        // },
+        // name1(id){
+        //     var user
+        //     for(user in this.users)
+        //     {
+        //         if(this.users[user]._id===id)
+        //         return this.users[user].name
+        //     }
+        //     return null
+        // },
+        // role(id){
+        //     var user
+        //     for(user in this.users)
+        //     {
+        //         if(this.users[user]._id===id)
+        //         return this.users[user].role_id
+        //     }
+        //     return null
+        // },
     
 
     },
     created() {
         this.getDetails();
-        this.getDetails1();
-        this.getDetails2();
-        this.getDetails3();
-        this.getDetails4();
+        // this.getDetails1();
+        // this.getDetails2();
+        // this.getDetails3();
+        // this.getDetails4();
     },
 
 }
