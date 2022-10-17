@@ -50,15 +50,33 @@ exports.getAllInterview = async (req, res) => {
           as: "arrangedby"
         }
       },
-      // {
-      //   $lookup:
-      //   {
-      //     from: "jobs",
-      //     localField: "job_id",
-      //     foreignField: "_id",
-      //     as: "job"
-      //   }
-      // }
+      {
+        $lookup:
+        {
+          from: "applications",
+          localField: "application_id",
+          foreignField: "_id",
+          as: "application"
+        }
+      },
+      {
+        $lookup:
+        {
+          from: "candidates",
+          localField: "application.candidate_id",
+          foreignField: "_id",
+          as: "candidate"
+        }
+      },
+      {
+        $lookup:
+        {
+          from: "jobs",
+          localField: "application.job_id",
+          foreignField: "_id",
+          as: "job"
+        }
+      }
 
     ]).then((result) => {
       res.json(result)

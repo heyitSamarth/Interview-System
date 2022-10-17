@@ -58,6 +58,7 @@ exports.getAllApplications = async (req, res) => {
             }
           }
           
+          
         ]).then((result) => {
           res.json(result)
         })

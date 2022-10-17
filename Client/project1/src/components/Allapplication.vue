@@ -147,9 +147,11 @@ export default {
                 this.applications = responce.data
                 // console.log(this.applications)
                 if (this.applications == null) {
-                    this.$router.push("/addc");
+                    this.$router.push("/adda");
 
                 }
+
+                return 1;
             } catch (err) {
 
                 console.log(err.response);

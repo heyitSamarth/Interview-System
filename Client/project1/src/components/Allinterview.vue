@@ -22,7 +22,7 @@
   <tbody  v-for = "interview in this.interviews" :key="interview._id" >
     <tr v-if="interview.interviewer_id==loggedInUser._id || ( loggedInUser.role_id)==='ADMIN' || ( loggedInUser.role_id==='HR' )">
         
-      <td>{{interview.application_id}} for {{interview.application_id}}</td>
+      <td>{{interview.candidate[0].name}} for {{interview.job[0].title}}</td>
       <td>{{interview.interviewby[0].name}} ( {{interview.interviewby[0].role_id}} )</td>
       <td>{{interview.arrangedby[0].name}}  ( {{interview.arrangedby[0].role_id}} )</td>
       <td>{{interview.level}}</td>

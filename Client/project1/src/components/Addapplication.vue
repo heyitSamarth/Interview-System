@@ -1,5 +1,5 @@
 <template >
-    <div class="container mt-5">
+    <div v-if="loggedInUser.role_id=='ADMIN' || loggedInUser.role_id=='HR' " class="container mt-5">
         <div class="row  ">
             <div class="coloum">
                 <div class="card  mx-auto shadow-lg">
@@ -80,13 +80,21 @@
             </div>
         </div>
     </div>
+    <div v-else class =" text-center my-4">
+    <h1 >Only Admin and HR Access</h1>
+  </div>
+
 
 
 </template>
     
 
 <script>
+import {mapState} from "vuex"
 export default {
+    computed:{
+      ...mapState(["loggedInUser"])
+    },
     data() {
         return {
             candidates: {},
@@ -143,8 +151,11 @@ export default {
         }
     },
     created() {
+        if(this.loggedInUser.role_id=='ADMIN' || this.loggedInUser.role_id=='HR' )
+        {
         this.getDetails();
         this.getDetails2();
+        }
     },
 
 }
