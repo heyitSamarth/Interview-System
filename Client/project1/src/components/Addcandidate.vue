@@ -1,5 +1,5 @@
 <template >
-    <div v-if="loggedInUser.role_id=='ADMIN' || loggedInUser.role_id=='HR' "  class="container mt-5">
+    <div v-if="loggedInUser.role_id=='ADMIN' || loggedInUser.role_id=='HR' " class="container mt-5">
         <div class="row  ">
             <div class="coloum">
                 <div class="card  mx-auto shadow-lg">
@@ -14,17 +14,19 @@
 
                             <!-- Name input -->
                             <div class="row mb-3">
-                                <label  for="inputname" class="col-sm-2 col-form-label">Full Name</label>
+                                <label for="inputname" class="col-sm-2 col-form-label">Full Name</label>
                                 <div class="col-sm-10">
-                                    <input placeholder="Jhon Wick" v-model="candidate.name" type="text" class="form-control" id="inputname">
+                                    <input placeholder="Jhon Wick" v-model="candidate.name" type="text"
+                                        class="form-control" id="inputname">
                                 </div>
                             </div>
 
                             <!-- Email input -->
                             <div class="row mb-3">
-                                <label  for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input placeholder="abc@xyz.com" v-model="candidate.email" type="email" class="form-control" id="inputEmail3">
+                                    <input placeholder="abc@xyz.com" v-model="candidate.email" type="email"
+                                        class="form-control" id="inputEmail3">
                                 </div>
                             </div>
 
@@ -37,22 +39,28 @@
                             </div> -->
 
                             <div class="row mb-3">
-                                <label  for="experience" class="col-sm-2 col-form-label">Experience</label>
+                                <label for="experience" class="col-sm-2 col-form-label">Experience</label>
                                 <div class="col-sm-10">
-                                    <input placeholder="Work Experience" v-model="candidate.experience" type="number" class="form-control" id="experience">
+                                    <input placeholder="Work Experience" v-model="candidate.experience" type="number"
+                                        class="form-control" id="experience">
                                 </div>
                             </div>
 
 
                             <div class="row mb-3">
-                                <label  for="rl" class="col-sm-2 col-form-label">Resume Link</label>
+                                <label for="rl" class="col-sm-2 col-form-label">Resume Link</label>
                                 <div class="col-sm-10">
-                                    <input placeholder="Resume Link" v-model="candidate.resume_link" type="text" class="form-control" id="rl">
+                                    <input placeholder="Resume Link" v-model="candidate.resume_link" type="text"
+                                        class="form-control" id="rl">
                                 </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFileSm" class="form-label">Small file input example</label>
+                                <input class="form-control form-control-sm" id="formFileSm" type="file">
                             </div>
 
                             <div class="row mb-3">
-                                <label  for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
+                                <label for="cb" class="col-sm-2 col-form-label">Createdby Id</label>
                                 <div class="col-sm-10">
                                     <label class="my-2">{{loggedInUser.name}} => {{loggedInUser._id}}</label>
                                     <!-- <input v-model="candidate.createdby_id" type="text" class="form-control" id="cb" > -->
@@ -68,22 +76,22 @@
             </div>
         </div>
     </div>
-    <div v-else class =" text-center my-4">
-    <h1 >Only Admin and HR Access</h1>
-  </div>
+    <div v-else class=" text-center my-4">
+        <h1>Only Admin and HR Access</h1>
+    </div>
 
 
 </template>
     
 <script>
-import {mapState} from "vuex"
+import { mapState } from "vuex"
 export default {
-    computed:{
-      ...mapState(["loggedInUser"])
+    computed: {
+        ...mapState(["loggedInUser"])
     },
     data: function () {
         return {
-            user:{},
+            user: {},
             candidate: {
                 name: "",
                 email: "",
@@ -96,11 +104,12 @@ export default {
     methods: {
         async addDetails() {
             try {
-                let response = await this.$http.post("candidate/register", {...this.candidate,//abc:this.loggedInUser._id
-                },{headers:{'auth-token':localStorage.getItem('jwt')}});
+                let response = await this.$http.post("candidate/register", {
+                    ...this.candidate,//abc:this.loggedInUser._id
+                }, { headers: { 'auth-token': localStorage.getItem('jwt') } });
                 if (response != null) {
-                    this.candidate={}
-                    
+                    this.candidate = {}
+
 
                 }
             } catch (err) {
