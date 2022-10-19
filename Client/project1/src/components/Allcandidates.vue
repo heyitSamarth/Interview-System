@@ -23,7 +23,7 @@
       <td>{{candidate.createdby[0].name}} ( {{candidate.createdby[0].role_id}} )</td>
       <td>{{candidate.email}}</td>
       <td>{{candidate.experience}}</td>
-      <td><a :href="'//'+candidate.resume_link" target="_blank">Resume</a></td>
+      <td><a :href="candidate.resume_link" target="_blank">Resume</a></td>
       <td>
         <i @click="deleteCandidate(candidate)" class="fa-solid fa-trash mx-5"></i>
     </td>

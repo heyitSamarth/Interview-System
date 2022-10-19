@@ -1,19 +1,31 @@
 const Candidate = require("../model/Candidate");
 var id = require("../authentication/auth")
+const cloudinary=require('cloudinary').v2
 
+cloudinary.config({ 
+  cloud_name: 'dnllxtzos', 
+  api_key: '465496971788836', 
+  api_secret: 'j3H7HBtl_U1V_O-cOmPnMyhnonw',
+  secure: true
+});
 
 
 exports.registerNewCandidate = async (req, res) => {
-  try {
+  
+
+  const file =req.files.doc;
+  cloudinary.uploader.upload(file.tempFilePath,async (err,result)=>{
+    try {
+      console.log(result.url);
     const createdbyid = id(req, res)
-    console.log(createdbyid)
+    // console.log(createdbyid)
     const candidate = new Candidate({
       name: req.body.name,
       email: req.body.email,
 
       createdby_id: createdbyid,
       experience: req.body.experience,
-      resume_link: req.body.resume_link,
+      resume_link: result.url,
 
     });
 
@@ -25,6 +37,10 @@ exports.registerNewCandidate = async (req, res) => {
     else
       res.status(400).json({ err: err });
   }
+
+    console.log(err);
+   })
+    
 };
 
 

@@ -47,16 +47,18 @@
                             </div>
 
 
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <label for="rl" class="col-sm-2 col-form-label">Resume Link</label>
                                 <div class="col-sm-10">
                                     <input placeholder="Resume Link" v-model="candidate.resume_link" type="text"
                                         class="form-control" id="rl">
                                 </div>
+                            </div> -->
+                            <div class=" row mb-3">
+                                <label for="formFileSm" class="col-sm-2 col-form-label">Resume</label>
+                                <div class="col-sm-10">
+                                <input class="form-control form-control-sm" @change="onFileChange" id="formFileSm" type="file">
                             </div>
-                            <div class="mb-3">
-                                <label for="formFileSm" class="form-label">Small file input example</label>
-                                <input class="form-control form-control-sm" id="formFileSm" type="file">
                             </div>
 
                             <div class="row mb-3">
@@ -96,19 +98,31 @@ export default {
                 name: "",
                 email: "",
                 experience: "",
-                resume_link: "",
+                // resume_link: "",
                 // abc:this.loggedInUser._id
-            }
+            },
+            file:null
         };
     },
     methods: {
+        onFileChange(e){
+            this.file=e.target.files[0];
+
+        },
+
         async addDetails() {
             try {
-                let response = await this.$http.post("candidate/register", {
-                    ...this.candidate,//abc:this.loggedInUser._id
-                }, { headers: { 'auth-token': localStorage.getItem('jwt') } });
+                let formData=new FormData();
+                formData.append("name",this.candidate.name)
+                formData.append("email",this.candidate.email)
+                formData.append("experience",this.candidate.experience)
+                formData.append("doc",this.file)
+                let response = await this.$http.post("candidate/register", 
+                    formData,
+                 { headers: { 'auth-token': localStorage.getItem('jwt') } });
                 if (response != null) {
                     this.candidate = {}
+                    this.file=null;
 
 
                 }

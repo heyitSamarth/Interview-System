@@ -5,7 +5,9 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config = require("./config/db");
+const fileUplod=require('express-fileupload')
 const app = express();
+
 
 
 //configure database and mongoose
@@ -20,6 +22,9 @@ mongoose
   });
 // db configuaration ends here
 
+app.use(fileUplod({
+  useTempFiles:true
+}));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -16,7 +16,7 @@ const candidateSchema = mongoose.Schema({
   },
   resume_link:{
     type: String,
-    required: [true, "Please Include your resume link"]
+    // required: [true, "Please Include your resume link"]
   },
   createdby_id:
   {
