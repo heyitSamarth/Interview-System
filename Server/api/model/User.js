@@ -19,14 +19,14 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, "Please Include your role id"]
   },
-  tokens: [
-    {
-      token: {
-        type: String,
-        required: true
-      }
-    }
-  ]
+  // tokens: [
+  //   {
+  //     token: {
+  //       type: String,
+  //       required: true
+  //     }
+  //   }
+  // ]
 });
 //this method will hash the password before saving the user model
 userSchema.pre("save", async function(next) {
@@ -41,8 +41,8 @@ userSchema.pre("save", async function(next) {
   userSchema.methods.generateAuthToken = async function() {
     const user = this;
     const token = jwt.sign({ _id: user._id, name: user.name, email: user.email,role_id:user.role_id},"secret");
-    user.tokens = user.tokens.concat({ token });
-    await user.save();
+    // user.tokens = user.tokens.concat({ token });
+    // await user.save();
     return token;
   };
   
