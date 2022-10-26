@@ -122,7 +122,8 @@ export default {
                  { headers: { 'auth-token': localStorage.getItem('jwt') } });
                 if (response != null) {
                     this.candidate = {}
-                    this.file=null;
+                    // this.file=null;
+                    this.$router.push("/addc");
 
 
                 }

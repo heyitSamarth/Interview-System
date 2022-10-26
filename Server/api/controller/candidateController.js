@@ -12,17 +12,16 @@ cloudinary.config({
 
 exports.registerNewCandidate = async (req, res) => {
   
-
+  try {
   const file =req.files.doc;
   cloudinary.uploader.upload(file.tempFilePath,async (err,result)=>{
-    try {
-      console.log(result.url);
+    
+      // console.log(result.url);
     const createdbyid = id(req, res)
     // console.log(createdbyid)
     const candidate = new Candidate({
       name: req.body.name,
       email: req.body.email,
-
       createdby_id: createdbyid,
       experience: req.body.experience,
       resume_link: result.url,
@@ -31,15 +30,16 @@ exports.registerNewCandidate = async (req, res) => {
 
     let data = await candidate.save();
     res.status(201).json({ data });
+ 
+
+    console.log(err);
+   })
   } catch (err) {
     if (err.name == 'JsonWebTokenError')
       res.status(401).json(" NO token")
     else
       res.status(400).json({ err: err });
   }
-
-    console.log(err);
-   })
     
 };
 

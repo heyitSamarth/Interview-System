@@ -89,6 +89,7 @@ export default {
                 let response = await this.$http.post("job/register", this.job,{headers:{'auth-token':localStorage.getItem('jwt')}});
                 if (response != null) {
                     this.job = {}
+                    
                 }
             } catch (err) {
 
