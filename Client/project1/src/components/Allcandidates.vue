@@ -58,7 +58,7 @@ export default {
             try {
                let  responce = await this.$http.get("candidate/get");
                 this.candidates=responce.data
-                console.log(this.candidates)
+                // console.log(this.candidates)
                 if (this.candidates == null) {
                     this.$router.push("/addc");
 
