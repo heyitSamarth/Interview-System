@@ -13,7 +13,7 @@ const app = express();
 //configure database and mongoose
 // mongoose.set("useCreateIndex", true);
 mongoose
-  .connect(config.database, { useNewUrlParser: true })
+  .connect(config.database, { useNewUrlParser: true})
   .then(() => {
     console.log("Database is connected");
   })

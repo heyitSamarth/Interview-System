@@ -42,14 +42,14 @@ export default {
             try {
                let  responce = await this.$http.get("job/get");
                 this.jobs=responce.data
-                // console.log(this.jobs)
+                console.log(this.jobs)
                 if (this.jobs == null) {
-                    this.$router.push("/addj");
+                    this.$router.push("/addj")
 
                 }
             } catch (err) {
 
-                console.log(err.response);
+                console.log(err);
             }
         },
         // async getDetails2() {
