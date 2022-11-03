@@ -7,7 +7,7 @@
     
     <div class="row  ">
       <div class ="coloum">
-      <div class ="card w-50 mx-auto shadow-lg">
+      <div class ="card  mx-auto shadow-lg">
         <h1 class="card-header " >
       Login 
       <!-- {{this.user}} -->
