@@ -1,11 +1,20 @@
 <template>
   <Navbar v-if="$route.name!='Login'"/>
-  <router-view/>
+  <!-- <Lodingspinner v-if="showLoding"/> -->
+  <router-view v-slot="{ Component }">
+  <transition name="fade" mode="out-in">
+      <component :is="Component"></component>
+    
+  </transition>
+</router-view>
+  
 </template>
  
 <script>
   import Navbar from './components/Navbar.vue';
-  import {mapMutations} from "vuex";
+  // import Lodingspinner from './components/Lodingspinner.vue';
+  import {mapMutations, mapState} from "vuex";
+
   const jwt = require("jsonwebtoken");
   export default {
     components: { Navbar},
@@ -14,6 +23,12 @@
         user: {}
       };
     },
+    computed:{
+      ...mapState([
+        "showLoding"
+    ])
+    }
+    ,
     methods: {
 
       ...mapMutations(["setLoggedInUser"]),
@@ -35,3 +50,13 @@
     }
   };
   </script>
+<style>
+.fade-enter-from,.fade-leave-to
+{
+  opacity: 0;
+}
+.fade-enter-active,.fade-leave-active
+{
+  transition: opacity 0.5s ease-out;
+}
+</style>

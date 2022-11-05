@@ -1,4 +1,5 @@
 <template >
+    
     <div v-if="loggedInUser.role_id=='ADMIN' || loggedInUser.role_id=='HR' " class="container mt-5">
         <div class="row  ">
             <div class="coloum">
@@ -97,6 +98,7 @@ export default {
     },
     data() {
         return {
+            load:false,
             candidates: {},
             jobs: {},
             application: {

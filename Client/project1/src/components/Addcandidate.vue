@@ -1,11 +1,13 @@
-<template >
+<template > 
+    
     <div v-if="loggedInUser.role_id=='ADMIN' || loggedInUser.role_id=='HR' " class="container mt-5">
+        <Lodingspinner v-if=this.load />
         <div class="row  ">
             <div class="coloum">
                 <div class="card  mx-auto shadow-lg">
                     <h1 class="card-header ">
                         Candidate Details
-                        <!-- {{loggedInUser._id}} -->
+                        {{this.load}}
                     </h1>
                     <div class="card-body">
 
@@ -86,13 +88,17 @@
 </template>
     
 <script>
-import { mapState } from "vuex"
+ import Lodingspinner from '@/components/Lodingspinner.vue';
+import { mapState ,mapMutations } from "vuex"
 export default {
+    components:{Lodingspinner},
     computed: {
-        ...mapState(["loggedInUser"])
+        ...mapState(["loggedInUser"]),
+        ...mapMutations(["setShowLoding"]),
     },
     data: function () {
         return {
+            load:false,
             user: {},
             candidate: {
                 name: "",
@@ -112,6 +118,8 @@ export default {
 
         async addDetails() {
             try {
+                // this.setShowLoding
+                this.load=true;
                 let formData=new FormData();
                 formData.append("name",this.candidate.name)
                 formData.append("email",this.candidate.email)
@@ -128,9 +136,13 @@ export default {
 
                 }
             } catch (err) {
-
-                console.log(err.response);
+                // await nextTick();
+                // this.setShowLoding;
+                console.log(err);
             }
+            this.load=false;
+            // this.setShowLoding;
+            
         }
     }
 

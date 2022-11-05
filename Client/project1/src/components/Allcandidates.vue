@@ -1,4 +1,5 @@
 <template lang="">
+    <div>
     <div class="container my-5 table-responsive" >
         
         <table class="table align-middle border border-3 rounded table-hover">
@@ -32,10 +33,12 @@
   </tbody>
 </table>  
     </div>
+</div>
 </template>
 
 <script>
 export default {
+
     data(){
         return{
             users:{},
@@ -104,6 +107,7 @@ export default {
     },
     
     created() {
+        
         this.getDetails();
         // this.getDetails2();
     },

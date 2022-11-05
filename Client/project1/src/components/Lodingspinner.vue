@@ -1,14 +1,40 @@
 <template lang="">
-    <div>
-        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="loding-box">
+
+        <div class="lds-roller mx-auto"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div>{{text}}</div>
+        
     </div>
 </template>
 <script>
+
 export default {
-    name:"Lodingspinner"
+    name:"Lodingspinner",
+    props:
+    {
+      text:{
+        required:false,
+        type:String,
+        default:"Loding"
+
+      }
+    }
 }
-</script>
-<style lang="">
+</script >
+<style>
+.loding-box{
+  position:fixed;
+  top:40%;
+  width:25%;
+  margin: auto;
+  background-color: #fff;
+  box-shadow:0px 0px 9px -2px #000 ;
+  z-index: 999;
+  left :0px;
+  right :0px;
+  text-align: center;
+  padding: 10px;
+}
     .lds-roller {
   display: inline-block;
   position: relative;
@@ -26,7 +52,7 @@ export default {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: #000;
   margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
