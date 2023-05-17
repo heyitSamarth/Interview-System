@@ -30,11 +30,11 @@ export default {
         async deleteJob(job) {
             try {
                let  responce = await this.$http.delete(`job/deletejob/${job._id}`);
-                console.log(responce)
                 this.getDetails()
+                console.log(responce)
             } catch (err) {
 
-                console.log(err.response);
+                console.log(err);
             }
         },
 
@@ -42,7 +42,7 @@ export default {
             try {
                let  responce = await this.$http.get("job/get");
                 this.jobs=responce.data
-                console.log(this.jobs)
+                // console.log(this.jobs)
                 if (this.jobs == null) {
                     this.$router.push("/addj")
 
@@ -63,7 +63,7 @@ export default {
         //         }
         //     } catch (err) {
 
-        //         console.log(err.response);
+        //         console.log(err);
         //     }
         // },
         // name(id){

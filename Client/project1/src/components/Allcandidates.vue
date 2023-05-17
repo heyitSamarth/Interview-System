@@ -53,7 +53,7 @@ export default {
                 this.getDetails()
             } catch (err) {
 
-                console.log(err.response);
+                console.log(err);
             }
         },
 
@@ -82,7 +82,7 @@ export default {
         //         }
         //     } catch (err) {
 
-        //         console.log(err.response);
+        //         console.log(err);
         //     }
         // },
         // name(id){

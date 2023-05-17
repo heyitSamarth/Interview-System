@@ -7,7 +7,7 @@
                 <div class="card  mx-auto shadow-lg">
                     <h1 class="card-header ">
                         Candidate Details
-                        {{this.load}}
+                        <!-- {{this.load}} -->
                     </h1>
                     <div class="card-body">
 

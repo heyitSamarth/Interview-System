@@ -137,7 +137,7 @@ export default {
 
             } catch (err) {
 
-                console.log(err.response);
+                console.log(err);
             }
         },
 
@@ -154,7 +154,7 @@ export default {
                 return 1;
             } catch (err) {
 
-                console.log(err.response);
+                console.log(err);
             }
         },
         //async getDetails1() {
@@ -168,7 +168,7 @@ export default {
         //         }
         //     } catch (err) {
 
-        //         console.log(err.response);
+        //         console.log(err);
         //     }
         // },
         // async getDetails2() {
@@ -182,7 +182,7 @@ export default {
         //         }
         //     } catch (err) {
 
-        //         console.log(err.response);
+        //         console.log(err);
         //     }
         // },
         // async getDetails3() {
@@ -196,7 +196,7 @@ export default {
         //         }
         //     } catch (err) {
 
-        //         console.log(err.response);
+        //         console.log(err);
         //     }
         // },
         // name(id){
